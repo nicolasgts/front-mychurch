@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CredenciaisDTO } from '../../../../models/credenciais.dto';
 import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,9 +13,14 @@ export class NavBarComponent implements OnInit {
 
   credentials: CredenciaisDTO = { email: "",password: "" };
 
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router) { 
+    router.events.subscribe((val) => this.isLoggedIn$ = this.auth.isAuthenticated());
+  }
+
+  isLoggedIn$: Boolean;
 
   ngOnInit() {
+    
   }
 
 
@@ -27,6 +33,11 @@ export class NavBarComponent implements OnInit {
         this.router.navigate(['profile'])
       },
       error => {});   
+  }
+
+  logout(){
+    this.auth.logout();
+    this.isLoggedIn$ = this.auth.isAuthenticated();
   }
 
 

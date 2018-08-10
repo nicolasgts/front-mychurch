@@ -1,12 +1,14 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav  class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="/churches">
-    <img src="/assets/church.png" class="rounded-circle" width="70" height="70" class="d-inline-block align-center" alt="">
+    <img  src="/assets/church.png" class="rounded-circle" width="70" height="70" class="d-inline-block align-center" alt="">
     MyChurch
   </a>
-  <form (submit)="login()" class="form-inline">
+  <form *ngIf="!isLoggedIn$" (submit)="login()" class="form-inline">
     <input class="form-control mr-sm-2" [(ngModel)]="credentials.email" name="email" type="email" placeholder="voce@email.com" >
     <input class="form-control mr-sm-2" [(ngModel)]="credentials.password" name="password" type="password" placeholder="password">
     <button class="btn btn-outline-success" style ="margin-right: 5px"type="submit">Login</button>
     <a class="btn btn-outline-primary"  href="cadastro">Cadastrar</a>
   </form>
+
+  <a  *ngIf="isLoggedIn$" class="btn btn-danger" (click)="logout()" >Logout</a>
 </nav>

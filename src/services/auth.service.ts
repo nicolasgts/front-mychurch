@@ -24,6 +24,7 @@ export class AuthService {
     }
 
     isAuthenticated() {
+        if(this.storage.getLocalUser() == null) return false;
         let token = this.storage.getLocalUser().token;
         // Check whether the token is expired and return
         // true or false
@@ -38,7 +39,9 @@ export class AuthService {
         };
         this.storage.setLocalUser(user);
     }
-     logout() {
+    
+    logout() {
         this.storage.setLocalUser(null);
+        location.assign('churches');
     }
 }
