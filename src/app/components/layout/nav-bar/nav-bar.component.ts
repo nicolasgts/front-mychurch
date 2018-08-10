@@ -23,6 +23,7 @@ export class NavBarComponent implements OnInit {
     this.auth.authenticate(this.credentials)
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.credentials = {email: "",password:""};
         this.router.navigate(['profile'])
       },
       error => {});   

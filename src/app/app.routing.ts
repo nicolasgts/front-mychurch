@@ -2,14 +2,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 import { ChurchesComponent } from './components/churches/churches.component';
 import { HomeComponent } from './components/layout/home/home.component';
-import { SigninUserComponent } from './components/signin-user/signin-user.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 
 const AppRoutes: Routes = [
     { path: '', component: HomeComponent, children: [
         { path: '', component: ChurchesComponent},
-        { path: 'cadastro', component: SigninUserComponent},
         { path: 'profile', component: ProfileComponent}
     
     ]},
