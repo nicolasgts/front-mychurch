@@ -3,12 +3,13 @@ import {ModuleWithProviders} from '@angular/core';
 import { ChurchesComponent } from './components/churches/churches.component';
 import { HomeComponent } from './components/layout/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './guards/auth.guards';
 
 
 const AppRoutes: Routes = [
     { path: '', component: HomeComponent, children: [
         { path: '', component: ChurchesComponent},
-        { path: 'profile', component: ProfileComponent}
+        { path: 'profile', canActivate: [AuthGuard] ,component: ProfileComponent}
     
     ]},
     

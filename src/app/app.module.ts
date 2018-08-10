@@ -12,11 +12,12 @@ import { routing } from './app.routing';
 import { NavBarComponent } from './components/layout/nav-bar/nav-bar.component';
 import { HomeComponent } from './components/layout/home/home.component';
 import { ChurchItemComponent } from './components/churches/church-item/church-item.component';
-import { SigninUserComponent } from './components/signin-user/signin-user.component';
 import { AuthService } from '../services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { StorageService } from '../services/storage.service';
 import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
+import { UserService } from '../services/domain/user.service';
+import { AuthGuard } from './guards/auth.guards';
 
 
 @NgModule({
@@ -26,7 +27,6 @@ import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
     NavBarComponent,
     HomeComponent,
     ChurchItemComponent,
-    SigninUserComponent,
     ProfileComponent
   ],
   imports: [
@@ -36,10 +36,12 @@ import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
     FormsModule
   ],
   providers: [
-    ChurchService,
     AuthService,
+    AuthGuard,
+    ChurchService,
     StorageService,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

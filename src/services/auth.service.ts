@@ -23,6 +23,13 @@ export class AuthService {
             });
     }
 
+    isAuthenticated() {
+        let token = this.storage.getLocalUser().token;
+        // Check whether the token is expired and return
+        // true or false
+        return !this.jwtHelper.isTokenExpired(token);
+      }
+
     successfulLogin(authorizationValue : string) {
         let tok = authorizationValue.substring(7);
         let user : LocalUser = {
